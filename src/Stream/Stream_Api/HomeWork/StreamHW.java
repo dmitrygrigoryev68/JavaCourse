@@ -89,15 +89,11 @@ public class StreamHW {
 
 
     public static String separateNamesByComma(List<User> users) {
-        String result = "";
-        for (int i = 0; i < users.size(); i++) {
-            result += users.get(i);
-            if (i != users.size() - 1) {
-                result += ", ";
-            }
-            System.out.println(result);
-        }
-        return users.toString();
+        return users
+                .stream().map(s -> s + "")
+                .collect(Collectors.joining(","));
+
+
     }
 
     public static double getAverageAge(List<User> users) {
@@ -124,23 +120,29 @@ public class StreamHW {
     }
 
     public static Map<Boolean, List<User>> partionUsersByGender(List<User> users) {
-        throw new NotImplementedException();
+        return users
+                .stream()
+                .collect(Collectors.groupingBy(User::isMale));
     }
 
     public static Map<Integer, List<User>> groupByAge(List<User> users) {
-        throw new NotImplementedException();
+        return users
+                .stream()
+                .collect(Collectors.groupingBy(User::getAge));
     }
 
     public static Map<Boolean, Map<Integer, List<User>>> groupByGenderAndAge(List<User> users) {
-        throw new NotImplementedException();
+        return users
+                .stream()
+                .collect(Collectors.groupingBy(User::isMale,Collectors
+                        .groupingBy(User::getAge)));
     }
 
     public static Map<Boolean, Long> countGender(List<User> users) {
-        Map<Boolean, Long> map = new HashMap<>();
-        for (int i = 0; i < users.size(); i++) {
-            map.put(users.get(i).isMale(), Long.valueOf(users.get(i).getAge()));
-            System.out.println(map);
-        }
+        Map<Boolean, Long> map = users
+                .stream()
+                .collect(Collectors.groupingBy(User::isMale, Collectors.counting()));
+
         return map;
     }
 
@@ -187,7 +189,7 @@ public class StreamHW {
 
     public static List<Integer> generate10RandomNumbers() {
         return IntStream
-                .generate(()->(int)(Math.random()*100))
+                .generate(() -> (int) (Math.random() * 100))
                 .limit(100).boxed()
                 .collect(Collectors.toList());
     }
@@ -207,7 +209,10 @@ public class StreamHW {
     }
 
     public static IntSummaryStatistics ageSummaryStatistics(List<User> users) {
-        throw new NotImplementedException();
+        return users
+                .stream()
+                .mapToInt(User::getAge)
+                .summaryStatistics();
     }
 }
 
