@@ -90,8 +90,8 @@ public class StreamHW {
 
     public static String separateNamesByComma(List<User> users) {
         return users
-                .stream().map(s -> s + "")
-                .collect(Collectors.joining(","));
+                .stream().map(u -> u.getName())
+                .collect(Collectors.joining(", "));
 
 
     }
@@ -134,9 +134,10 @@ public class StreamHW {
     public static Map<Boolean, Map<Integer, List<User>>> groupByGenderAndAge(List<User> users) {
         return users
                 .stream()
-                .collect(Collectors.groupingBy(User::isMale,Collectors
+                .collect(Collectors.groupingBy(User::isMale, Collectors
                         .groupingBy(User::getAge)));
     }
+
 
     public static Map<Boolean, Long> countGender(List<User> users) {
         Map<Boolean, Long> map = users
@@ -213,6 +214,10 @@ public class StreamHW {
                 .stream()
                 .mapToInt(User::getAge)
                 .summaryStatistics();
+    }
+
+    public static boolean isSreamEmty(Stream<Integer> stream) {
+        return (stream.findAny() == null);
     }
 }
 
