@@ -175,14 +175,10 @@ public class StreamHW {
     }
 
     public static List<Integer> generateFirst10PrimeNumbers() {
-        List<Integer> list = new ArrayList<>(10);
-        for (int i = 2; i < 30; i++) {
-            if (isPrime(i)) {
-                list.add(i);
-            }
-        }
-
-        return list;
+        return IntStream.range(2, 30)
+                .filter(StreamHW::isPrime)
+                .boxed()
+                .collect(Collectors.toCollection(() -> new ArrayList<>()));
     }
 
     public static boolean isPrime(int number) {
@@ -190,12 +186,10 @@ public class StreamHW {
     }
 
     public static List<Integer> generate10RandomNumbers() {
-
-        List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add(i, (int) Math.round(Math.random()));
-        }
-        return list;
+        return IntStream
+                .generate(()->(int)(Math.random()*100))
+                .limit(100).boxed()
+                .collect(Collectors.toList());
     }
 
     public static User findOldest(List<User> users) {
