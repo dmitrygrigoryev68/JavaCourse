@@ -1,7 +1,5 @@
 package Stream.Stream_Api.HomeWork;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -14,9 +12,9 @@ public class StreamHW {
         List<Integer> numbers = Arrays.asList(1, 4, 16, 256);
         return numbers
                 .stream()
-                .map(Math::sqrt)
-                .map(Double::intValue)
+                .map(a -> (int)Math.sqrt(a) )
                 .collect(Collectors.toList());
+
     }
 
     public static List<Integer> getAgeFromUsers(List<User> user) {
@@ -90,7 +88,8 @@ public class StreamHW {
 
     public static String separateNamesByComma(List<User> users) {
         return users
-                .stream().map(u -> u.getName())
+                .stream()
+                .map(u -> u.getName())
                 .collect(Collectors.joining(", "));
 
 
@@ -99,7 +98,9 @@ public class StreamHW {
     public static double getAverageAge(List<User> users) {
         return users
                 .stream()
-                .mapToDouble(User::getAge).average().getAsDouble();
+                .mapToDouble(User::getAge)
+                .average()
+                .getAsDouble();
     }
 
     public static Integer getMaxAge(List<User> users) {
@@ -181,7 +182,7 @@ public class StreamHW {
         return IntStream.range(2, 30)
                 .filter(StreamHW::isPrime)
                 .boxed()
-                .collect(Collectors.toCollection(() -> new ArrayList<>()));
+                .collect(Collectors.toList());
     }
 
     public static boolean isPrime(int number) {
@@ -190,8 +191,8 @@ public class StreamHW {
 
     public static List<Integer> generate10RandomNumbers() {
         return IntStream
-                .generate(() -> (int) (Math.random() * 100))
-                .limit(100).boxed()
+                .generate(() -> (int) (Math.random() * 10))
+                .limit(10).boxed()
                 .collect(Collectors.toList());
     }
 
@@ -220,5 +221,3 @@ public class StreamHW {
         return (stream.findAny() == null);
     }
 }
-
-
