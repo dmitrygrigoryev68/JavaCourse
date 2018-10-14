@@ -216,8 +216,4 @@ public class StreamHW {
                 .mapToInt(User::getAge)
                 .summaryStatistics();
     }
-
-    public static boolean isSreamEmty(Stream<Integer> stream) {
-        return (stream.findAny() == null);
-    }
 }

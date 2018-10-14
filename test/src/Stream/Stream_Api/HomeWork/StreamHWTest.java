@@ -239,14 +239,14 @@ public class StreamHWTest {
     }
 
     @Test
-    public void shouldGenerate10RandomNumbers() {
-        List<Integer> randomNumbers = StreamHW.generate10RandomNumbers();
-        assertTrue(randomNumbers.size() == 10);
+    public void shouldBeEmptyStream() {
+        Stream<Integer> numberStream = Stream.of(); //create empty stream
+        assertNotNull(numberStream);
     }
 
     @Test
-    public void shouldBeEmptyStream() {
-        Stream<Integer> numberStream = null; //create empty stream
-        assertNotNull(numberStream);
+    public void shouldGenerate10RandomNumbers() {
+        List<Integer> randomNumbers = StreamHW.generate10RandomNumbers();
+        assertTrue(randomNumbers.size() == 10);
     }
 }
