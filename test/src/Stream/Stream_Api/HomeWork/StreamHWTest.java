@@ -66,7 +66,7 @@ public class StreamHWTest {
     public void shouldSkipInCollection() {
         List<Integer> integers = asList(1, 2, 3, 4, 5);
         List<Integer> result = StreamHW.skip(integers, 2);
-        assertEquals(result,asList(3, 4, 5));
+        assertEquals(result, asList(3, 4, 5));
     }
 
     @Test
@@ -80,7 +80,7 @@ public class StreamHWTest {
     public void shouldReturnDistinctLetters() {
         List<String> names = asList("Homer Simpson", "Marge Simpson", "Bart Simpson", "Kent Brockman");
         List<String> result = StreamHW.getDistinctLetters(names);
-        assertEquals(result, asList("H", "o", "m", "e", "r", " " , "S", "i", "p", "s", "n", "M", "a", "g", "B", "t", "K", "c", "k"));
+        assertEquals(result, asList("H", "o", "m", "e", "r", " ", "S", "i", "p", "s", "n", "M", "a", "g", "B", "t", "K", "c", "k"));
     }
 
     @Test
@@ -94,18 +94,18 @@ public class StreamHWTest {
     }
 
     @Test
-    public void shouldPerformCalculations(){
+    public void shouldPerformCalculations() {
         List<User> users = User.getUsersWithAge(10, 20, 30);
         assertEquals(StreamHW.getMinAge(users), (Integer) 10);
         assertEquals(StreamHW.getMaxAge(users), (Integer) 30);
-        assertEquals(StreamHW.getAverageAge(users), (double)(10+20+30)/3, 0);
+        assertEquals(StreamHW.getAverageAge(users), (double) (10 + 20 + 30) / 3, 0);
     }
 
     @Test
     public void shouldPartitionByGender() {
         User homer = new User("Homer", true);
         User bart = new User("Bart", true);
-        User maggie = new User("Maggie",false);
+        User maggie = new User("Maggie", false);
         User lisa = new User("Lisa", false);
         List<User> input = asList(homer, bart, maggie, lisa);
         Map<Boolean, List<User>> result = StreamHW.partionUsersByGender(input);
@@ -117,7 +117,7 @@ public class StreamHWTest {
     public void shouldGroupByAge() {
         User homer = new User("Homer", 50);
         User bart = new User("Bart", 12);
-        User maggie = new User("Maggie",2);
+        User maggie = new User("Maggie", 2);
         User lisa = new User("Lisa", 8);
         List<User> input = asList(homer, bart, maggie, lisa);
         Map<Integer, List<User>> result = StreamHW.groupByAge(input);
@@ -131,7 +131,7 @@ public class StreamHWTest {
     public void shouldGroupByGenderAndAge() {
         User homer = new User("Homer", 50, true);
         User bart = new User("Bart", 12, true);
-        User maggie = new User("Maggie",2, false);
+        User maggie = new User("Maggie", 2, false);
         User lisa = new User("Lisa", 8, false);
         List<User> input = asList(homer, bart, maggie, lisa);
         Map<Boolean, Map<Integer, List<User>>> result = StreamHW.groupByGenderAndAge(input);
@@ -145,31 +145,31 @@ public class StreamHWTest {
     public void shouldCountGender() {
         User homer = new User("Homer", 50, true);
         User bart = new User("Bart", 12, true);
-        User maggie = new User("Maggie",2, false);
+        User maggie = new User("Maggie", 2, false);
         User lisa = new User("Lisa", 8, false);
         List<User> input = asList(homer, bart, maggie, lisa);
         Map<Boolean, Long> result = StreamHW.countGender(input);
-        assertEquals(result.get(true),(Long) 2L);
-        assertEquals(result.get(false),(Long) 2L);
+        assertEquals(result.get(true), (Long) 2L);
+        assertEquals(result.get(false), (Long) 2L);
     }
 
     @Test
-    public void shouldMatchAge(){
+    public void shouldMatchAge() {
         List<User> users = User.getUsersWithAge(10, 20, 30);
         assertTrue(StreamHW.anyMatch(users, 10));
     }
 
     @Test
-    public void shouldNoneMatchAge(){
+    public void shouldNoneMatchAge() {
         List<User> users = User.getUsersWithAge(10, 20, 30);
         assertTrue(StreamHW.noneMatch(users, 40));
     }
 
     @Test
-    public void shouldFindAnyUser(){
+    public void shouldFindAnyUser() {
         User homer = new User("Homer", true);
         User bart = new User("Bart", true);
-        User maggie = new User("Maggie",false);
+        User maggie = new User("Maggie", false);
         User lisa = new User("Lisa", true);
         List<User> users = asList(homer, bart, maggie, lisa);
         Optional<User> user = StreamHW.findAny(users, "Homer");
@@ -177,10 +177,10 @@ public class StreamHWTest {
     }
 
     @Test
-    public void shouldSortByAge(){
+    public void shouldSortByAge() {
         User homer = new User("Homer", 50);
         User bart = new User("Bart", 12);
-        User maggie = new User("Maggie",2);
+        User maggie = new User("Maggie", 2);
         User lisa = new User("Lisa", 8);
         List<User> users = asList(homer, bart, maggie, lisa);
         List<User> sorted = StreamHW.sortByAge(users);
@@ -188,10 +188,10 @@ public class StreamHWTest {
     }
 
     @Test
-    public void shouldFindOldest(){
+    public void shouldFindOldest() {
         User homer = new User("Homer", 50);
         User bart = new User("Bart", 12);
-        User maggie = new User("Maggie",2);
+        User maggie = new User("Maggie", 2);
         User lisa = new User("Lisa", 8);
         List<User> users = asList(homer, bart, maggie, lisa);
         User oldest = StreamHW.findOldest(users);
@@ -199,33 +199,33 @@ public class StreamHWTest {
     }
 
     @Test
-    public void shouldSumAgeAsInt(){
+    public void shouldSumAgeAsInt() {
         User homer = new User("Homer", 50);
         User bart = new User("Bart", 12);
-        User maggie = new User("Maggie",2);
+        User maggie = new User("Maggie", 2);
         User lisa = new User("Lisa", 8);
         List<User> users = asList(homer, bart, maggie, lisa);
         int sumAge = StreamHW.sumAge(users);
-        int assertAge = 50+12+2+8;
+        int assertAge = 50 + 12 + 2 + 8;
         assertEquals(sumAge, assertAge);
     }
 
     @Test
-    public void shouldGenerateAgeSummaryStatistics(){
+    public void shouldGenerateAgeSummaryStatistics() {
         User homer = new User("Homer", 50);
         User bart = new User("Bart", 12);
-        User maggie = new User("Maggie",2);
+        User maggie = new User("Maggie", 2);
         User lisa = new User("Lisa", 8);
         List<User> users = asList(homer, bart, maggie, lisa);
         IntSummaryStatistics statistics = StreamHW.ageSummaryStatistics(users);
-        assertEquals(statistics.getAverage(), (double)(50+12+2+8)/4, 0);
-        assertEquals(statistics.getCount(),4L);
-        assertEquals(statistics.getMax(),50);
-        assertEquals(statistics.getMin(),2);
+        assertEquals(statistics.getAverage(), (double) (50 + 12 + 2 + 8) / 4, 0);
+        assertEquals(statistics.getCount(), 4L);
+        assertEquals(statistics.getMax(), 50);
+        assertEquals(statistics.getMin(), 2);
     }
 
     @Test
-    public void shouldConvertToBoxedStream(){
+    public void shouldConvertToBoxedStream() {
         List<Integer> numbers = asList(1, 2, 3);
         IntStream intStream = numbers.stream().mapToInt(value -> value);
         Stream<Integer> boxedStream = StreamHW.getBoxedStream(intStream);
@@ -233,20 +233,20 @@ public class StreamHWTest {
     }
 
     @Test
-    public void shouldBeEmptyStream(){
-        Stream<Integer> numberStream =null; //create empty stream
+    public void shouldGenerateFirstPrimeNumbers() {
+        List<Integer> primeNumbers = StreamHW.generateFirst10PrimeNumbers();
+        assertEquals(primeNumbers, asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29));
+    }
+
+    @Test
+    public void shouldBeEmptyStream() {
+        Stream<Integer> numberStream = Stream.of();
         assertNotNull(numberStream);
     }
 
     @Test
-    public void shouldGenerateFirstPrimeNumbers(){
-        List<Integer> primeNumbers = StreamHW.generateFirst10PrimeNumbers();
-        assertEquals(primeNumbers, asList(2,3,5,7,11,13, 17,19, 23, 29));
-    }
-
-    @Test
-    public void shouldGenerate10RandomNumbers(){
+    public void shouldGenerate10RandomNumbers() {
         List<Integer> randomNumbers = StreamHW.generate10RandomNumbers();
-        assertTrue(randomNumbers.size()==10);
+        assertTrue(randomNumbers.size() == 10);
     }
 }
