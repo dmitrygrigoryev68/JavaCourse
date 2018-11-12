@@ -186,13 +186,16 @@ public class StreamHW {
     }
 
     public static boolean isPrime(int number) {
-        return IntStream.rangeClosed(2, number / 2).noneMatch(i -> number % i == 0);
+        return IntStream
+                .rangeClosed(2, number / 2)
+                .noneMatch(i -> number % i == 0);
     }
 
     public static List<Integer> generate10RandomNumbers() {
         return IntStream
                 .generate(() -> (int) (Math.random() * 10))
-                .limit(10).boxed()
+                .limit(10)
+                .boxed()
                 .collect(Collectors.toList());
     }
 

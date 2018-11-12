@@ -240,7 +240,7 @@ public class StreamHWTest {
 
     @Test
     public void shouldBeEmptyStream() {
-        Stream<Integer> numberStream = Stream.of(); //create empty stream
+        Stream<Integer> numberStream = Stream.of();
         assertNotNull(numberStream);
     }
 
